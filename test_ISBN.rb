@@ -7,14 +7,19 @@ class TestISBNFunction < Minitest::Test
 		assert_equal(true, results)	
 	end
 
-	def test_last_char
+	def test_last_char_true
 		results = check_isbn('12345')
 		assert_equal(true, results)
 	end
 
-	def test_last_char_X
+	def test_last_char_X_true
 		results = check_isbn('12345X')
 		assert_equal(true, results)
+	end
+
+	def test_last_char_false
+		results = check_isbn('12345t')
+		assert_equal(false, results)
 	end
 
 end
