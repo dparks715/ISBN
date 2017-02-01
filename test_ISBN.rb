@@ -27,4 +27,9 @@ class TestISBNFunction < Minitest::Test
 		assert_equal(true, results)
 	end
 
+	def test_consecutive_spaces_false
+		results = check_isbn('123  45')
+		assert_equal(true, results)
+	end
+
 end
