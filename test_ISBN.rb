@@ -54,6 +54,17 @@ class TestISBNTen < Minitest::Test
 		results = verify_isbn_ten("877195869x")
 		assert_equal(true, results)
 	end
+	#returning true, should be false
+	def test_invalid_ISBN_false
+		results = verify_isbn_ten("4780470059029")
+		assert_equal(false, results)
+	end
+	#extra hypen is false, so verify_isbn_ten function
+	#is always returning true
+	def test_ISBN_extra_hypen_false
+		results = verify_isbn_ten("0--321-14653-0")
+		assert_equal(false, results)
+	end
 
 end
 
