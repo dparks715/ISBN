@@ -50,5 +50,10 @@ class TestISBNTen < Minitest::Test
 		assert_equal(true, results)
 	end
 
+	def test_valid_ISBN_true_with_X
+		results = verify_isbn_ten("877195869x")
+		assert_equal(true, results)
+	end
+
 end
 
