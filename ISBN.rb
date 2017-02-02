@@ -5,19 +5,21 @@
 
 def check_isbn(isbn_num)
 	valid = false
+	nums = isbn_num.gsub(/[^0-9]/, "")
 
 	# Checks a series of conditionals on isbn_num.
 	if /\A/.match(isbn_num) && #Checks if isbn_num begins with string
-		!!/\s{2}/.match(isbn_num) == false && #Checks there are no consecutive spaces
 		!!/X/.match(isbn_num[-1]) == true || #Checks if last index is X
 		!!/x/.match(isbn_num[-1]) == true || #Checks if last index is x
 		!!/\d/.match(isbn_num[-1]) == true #Checks if last index is 0-9
 
-		#Had to do another if statement. could not get this conditional to work in
-		#the list above for some reason.
-		#Checks that there are no consecutive hypens
-		if !!/\-{2}/.match(isbn_num) == false 
+		#Had to do another if statement.
+		#These conditionals wouldn't work in the list above
+		#Checks that there are no consecutive hypens or spaces
+		if !!/\-{2}/.match(isbn_num) == false &&
+			!!/\s{2}/.match(isbn_num) == false
 			valid = true
+
 		end
 	end
 	valid

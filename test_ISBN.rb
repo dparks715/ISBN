@@ -28,12 +28,12 @@ class TestISBNFunction < Minitest::Test
 	end
 
 	def test_consecutive_spaces_false
-		results = check_isbn('123  45')
-		assert_equal(true, results)
+		results = check_isbn('12  3  45')
+		assert_equal(false, results)
 	end
 
 	def test_no_consecutive_hyphens_true
-		results = check_isbn('1-2-3-4-5')
+		results = check_isbn('1-2-3-4-5-6-7-8-9')
 		assert_equal(true, results)
 	end
 
