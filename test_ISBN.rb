@@ -75,5 +75,14 @@ class TestISBNTen < Minitest::Test
 		assert_equal(true, results)
 	end
 	
+	def test_ISBN13_valid_true_with_hypens
+		results = verify_isbn("978-0-13-149505-0")
+		assert_equal(true, results)
+	end
+
+	def test_ISBN13_valid_true_with_spaces
+		results = verify_isbn("978 0 471 48648 0")
+		assert_equal(true, results)
+	end
 end
 

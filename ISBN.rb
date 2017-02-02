@@ -35,6 +35,7 @@ def verify_isbn(isbn_num)
 		total = 0
 		index_pos = 0
 		index_count = 1
+		#Chopping off last part because we dont need the check digit for the calculation
 		counter = nums.chop
 		#Checks if the isbn_num is length 10, or length 9 with and X
 		#Moves to the formula for determining the check digit if so
