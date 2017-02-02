@@ -46,22 +46,22 @@ end
 class TestISBNTen < Minitest::Test
 
 	def test_valid_ISBN_true
-		results = verify_isbn_ten("0-321-14653-0")
+		results = verify_isbn("0-321-14653-0")
 		assert_equal(true, results)
 	end
 
 	def test_valid_ISBN_true_with_X
-		results = verify_isbn_ten("877195869x")
+		results = verify_isbn("877195869x")
 		assert_equal(true, results)
 	end
 	
 	def test_invalid_ISBN_false
-		results = verify_isbn_ten("4780470059029")
+		results = verify_isbn("4780470059029")
 		assert_equal(false, results)
 	end
 
 	def test_ISBN_extra_hypen_false
-		results = verify_isbn_ten("0--321-14653-0")
+		results = verify_isbn("0--321-14653-0")
 		assert_equal(false, results)
 	end
 
