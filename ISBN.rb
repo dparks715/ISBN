@@ -35,6 +35,8 @@ def verify_isbn(isbn_num)
 		total = 0
 		index_pos = 0
 		index_count = 1
+		#Checks if the isbn_num is length 10, or length 9 with and X
+		#Moves to the formula for determining the check digit if so
 		if nums.length == 10 ||
 			nums.length == 9 &&
 			isbn_num[-1] == 'X' ||
@@ -58,9 +60,12 @@ def verify_isbn(isbn_num)
 			elsif check_digit != 10 && isbn_num[-1].to_i == check_digit
 				valid = true
 			end
-
+		#Checks if the isbn_num is length 13 after being stripped
+		#Uses the ISBN13 check digit formula if so
 		else nums.length == 13
 			even_odd = 2
+			#Uses an even or odd counter to determine whether to multiply
+			#by 1 or 3, adds to a variable called total
 			nums.length.times do
 				if even_odd % 2 == 0
 					 total = total + nums[index_pos].to_i * 1
@@ -69,7 +74,10 @@ def verify_isbn(isbn_num)
 				end
 				index_pos += 1
 			end
+			#Does the math for determining the check_digits value
 			check_digit = (10 - (total % 10)) % 10
+			#True if the check digit matches the last index pos of the ISBN
+			#Convert to integer because comparing integer to string
 			if check_digit == nums[-1].to_i
 				valid == true
 			else
