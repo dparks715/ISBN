@@ -60,7 +60,7 @@ class TestISBNTen < Minitest::Test
 		assert_equal(false, results)
 	end
 	#extra hypen is false, so verify_isbn_ten function
-	#is always returning true
+	#is always returning true, IF first function is true.
 	def test_ISBN_extra_hypen_false
 		results = verify_isbn_ten("0--321-14653-0")
 		assert_equal(false, results)
