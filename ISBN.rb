@@ -35,6 +35,7 @@ def verify_isbn(isbn_num)
 		total = 0
 		index_pos = 0
 		index_count = 1
+		counter = nums.chop
 		#Checks if the isbn_num is length 10, or length 9 with and X
 		#Moves to the formula for determining the check digit if so
 		if nums.length == 10 ||
@@ -44,7 +45,7 @@ def verify_isbn(isbn_num)
 			#Does the calculation for the check digit
 			#Adds digit position times the value of the position converted to integer
 			#To a variable called total
-			nums.length.times do
+			counter.length.times do
 				total = total + nums[index_pos].to_i * index_count
 				index_pos += 1
 				index_count += 1
@@ -66,24 +67,25 @@ def verify_isbn(isbn_num)
 			even_odd = 2
 			#Uses an even or odd counter to determine whether to multiply
 			#by 1 or 3, adds to a variable called total
-			nums.length.times do
+			counter.length.times do
 				if even_odd % 2 == 0
 					 total = total + nums[index_pos].to_i * 1
 				else
-					total = total + nums[index_pos].to_i * 3
+						total = total + nums[index_pos].to_i * 3
 				end
+				even_odd += 1
 				index_pos += 1
 			end
 			#Does the math for determining the check_digits value
 			check_digit = (10 - (total % 10)) % 10
 			#True if the check digit matches the last index pos of the ISBN
 			#Convert to integer because comparing integer to string
-			if check_digit == nums[-1].to_i
-				valid == true
+			if check_digit == isbn_num[-1].to_i
+				valid = true
 			else
-				valid == false
+				valid = false
 			end
 		end
 	end
-	valid
+valid
 end
