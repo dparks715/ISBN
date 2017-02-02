@@ -22,3 +22,12 @@ def letter_check(isbn_num)
 			true
 		end
 end
+
+def check_last_index(isbn_num)
+	if isbn_num.match(/[0-9 x X]/)
+		true
+	else
+		false
+	end
+
+end

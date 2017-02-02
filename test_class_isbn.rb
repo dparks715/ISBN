@@ -46,3 +46,22 @@ class Testforletters < Minitest::Test
 	end
 
 end
+
+class TestcheckLastindex < Minitest::Test
+
+	def test_last_index_X
+		results = check_last_index('12345X')
+		assert_equal(true, results)
+	end
+
+	def test_last_index_lowercase_x
+		results = check_last_index('12345x')
+		assert_equal(true, results)
+	end
+
+	def test_last_index_false_character
+		results = check_last_index('123457g')
+		assert_equal(true, results)
+	end
+
+end
