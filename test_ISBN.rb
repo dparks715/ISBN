@@ -3,42 +3,42 @@ require_relative 'ISBN.rb'
 
 class TestISBNFunction < Minitest::Test
 	def test_ISBN_is_string
-		results = check_isbn('12345')
+		results = check_isbn('1234567890')
 		assert_equal(true, results)	
 	end
 
 	def test_last_char_true
-		results = check_isbn('12345')
+		results = check_isbn('1234567890')
 		assert_equal(true, results)
 	end
 
 	def test_last_char_X_true
-		results = check_isbn('12345X')
+		results = check_isbn('123456789X')
 		assert_equal(true, results)
 	end
 
 	def test_last_char_false
-		results = check_isbn('12345t')
+		results = check_isbn('123456789t')
 		assert_equal(false, results)
 	end
 
 	def test_no_consecutive_spaces_true
-		results = check_isbn('1 2 3 4 5')
+		results = check_isbn('1 3 467890')
 		assert_equal(true, results)
 	end
 
 	def test_consecutive_spaces_false
-		results = check_isbn('12  3  45')
+		results = check_isbn('12  56  90')
 		assert_equal(false, results)
 	end
 
 	def test_no_consecutive_hyphens_true
-		results = check_isbn('1-2-3-4-5-6-7-8-9')
+		results = check_isbn('1-2-3-4-56')
 		assert_equal(true, results)
 	end
 
 	def test_consecutive_hypens_false
-		results = check_isbn('1234--56')
+		results = check_isbn('1234--5678')
 		assert_equal(false, results)
 	end
 end

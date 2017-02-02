@@ -5,7 +5,6 @@
 
 def check_isbn(isbn_num)
 	valid = false
-	nums = isbn_num.gsub(/[^0-9]/, "")
 
 	# Checks a series of conditionals on isbn_num.
 	if /\A/.match(isbn_num) && #Checks if isbn_num begins with string
@@ -17,7 +16,7 @@ def check_isbn(isbn_num)
 		#These conditionals wouldn't work in the list above
 		#Checks that there are no consecutive hypens or spaces
 		if !!/\-{2}/.match(isbn_num) == false &&
-			!!/\s{2}/.match(isbn_num) == false
+			!!/\s{2}/.match(isbn_num) == false &&
 			valid = true
 
 		end
