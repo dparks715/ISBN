@@ -10,3 +10,11 @@ end
 def remove_spaces(isbn_num)
 	isbn_num.delete(' ')
 end
+
+def remove_hypen(isbn_num)
+	isbn_num.delete('-')
+end
+
+def letter_check(isbn_num)
+		!!isbn_num.match(/[a-z A-Z]/)
+end

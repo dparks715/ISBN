@@ -28,3 +28,21 @@ class TestRemoveSpaces < Minitest::Test
 	end
 
 end
+
+class TestRemoveHypens < Minitest::Test
+
+	def test_remove_hypens
+		results = remove_hypen('1-2-3-4-5')
+		assert_equal('12345', results)
+	end
+
+end
+
+class Testforletters < Minitest::Test
+
+	def test_for_letters
+		results = letter_check('123mng456lkd3')
+		assert_equal(true, results)
+	end
+
+end
