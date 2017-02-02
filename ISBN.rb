@@ -27,6 +27,7 @@ def verify_isbn_ten(isbn_num)
 		#Strips everything but numbers from isbn_num
 		#Puts them in string called nums
 		nums = isbn_num.gsub(/[^0-9]/, "")
+		puts nums
 		total = 0
 		index_pos = 0
 		index_count = 1
@@ -40,9 +41,10 @@ def verify_isbn_ten(isbn_num)
 		end
 		#check_digit is our total mod 11
 		check_digit = total % 11
+		puts check_digit
 		#If check_digit(total mod 11) is 10, checks that last character
 		#of isbn_num is and x or X, returns true if so
-		if check_digit == 10 && isbn_num[-1] == 'X' || 'x'
+		if check_digit == 10 && isbn_num[-1] == 'X' || isbn_num[-1] =='x'
 			valid = true
 		#If check_digit is not 10, then the last digit should be the check_digit
 		#check_digit is an integer so to compare we need our string value .to_i(to integer)
@@ -52,3 +54,5 @@ def verify_isbn_ten(isbn_num)
 	end
 valid
 end
+
+verify_isbn_ten("4780470059029")
