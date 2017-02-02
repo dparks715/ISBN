@@ -42,7 +42,7 @@ class Testforletters < Minitest::Test
 
 	def test_for_letters
 		results = letter_check('123mng456lkd3')
-		assert_equal(true, results)
+		assert_equal(false, results)
 	end
 
 end

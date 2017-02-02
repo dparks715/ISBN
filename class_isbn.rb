@@ -16,5 +16,9 @@ def remove_hypen(isbn_num)
 end
 
 def letter_check(isbn_num)
-		!!isbn_num.match(/[a-z A-Z]/)
+		if isbn_num.match(/[a-z A-Z]/)
+			false
+		else
+			true
+		end
 end
