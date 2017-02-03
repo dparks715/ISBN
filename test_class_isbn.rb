@@ -38,11 +38,16 @@ class TestRemoveHypens < Minitest::Test
 
 end
 
-class Testforletters < Minitest::Test
+class TestforlettersAndLength < Minitest::Test
 
-	def test_for_letters
+	def test_for_letters_in_first_nine
 		results = letter_check('123mng456lkd3')
 		assert_equal(false, results)
+	end
+
+	def test_no_letters_true
+		results = letter_check('123456789X')
+		assert_equal(true, results)
 	end
 
 end
