@@ -1,3 +1,5 @@
+#Need to chain functions together.
+
 #Deletes spaces from isbn_num
 def remove_spaces(isbn_num)
 	isbn_num.delete(' ')
@@ -7,6 +9,9 @@ end
 def remove_hypen(isbn_num)
 	isbn_num.delete('-')
 end
+
+#This next function will probably need to determine whether ISBN
+#is a 10 or 13 to decide which check digit calc to use.
 
 #Moved this from the top, because it checks for length of 10.
 #Length can start out greater than 10 due to spaces and hypens.
@@ -29,7 +34,7 @@ end
 #Spaces, hypens, and numbers are gone so there should be nothing left
 #if it is a valid ISBN
 def letter_check(isbn_num)
-	#Line 38 is calling 2 methods, .chop and .delete on our parameter isbn_num
+	#Line 43 is calling 2 methods, .chop and .delete on our parameter isbn_num
 	#.chop removes the last character from the string. .delete('0-9') targets
 	#numbers in the string 0 to 9 and deletes them.  We assign whats left to
 	#the variable num.  Then we check the length of num using == 0.
