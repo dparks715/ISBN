@@ -78,4 +78,9 @@ class TestISBNtenCalc < Minitest::Test
 		assert_equal(true, results)	
 	end
 
+	def test_valid_isbn_ten_true_no_X
+		results = isbn_ten_valid?("0471958697")
+		assert_equal(true, results)	
+	end
+
 end
