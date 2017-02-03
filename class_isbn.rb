@@ -51,16 +51,18 @@ def check_last_index(isbn_num)
 	end
 
 end
+
 #Does the check digit calculation for ISBN 10, returns true if valid, false if not.
 def isbn_ten_valid?(isbn_num)
-	#Assigning variables for counters, and valid, which will be our result.
+	#Assigning variables for counters, and valid starts as false.  Will get assigned
+	#true only if conditions/calculations are met.
 	valid = false
 	total = 0
 	index_pos = 0
 	index_count = 1
 	#Use chop here because we dont use the last character to calculate the check digit.
 	counter = isbn_num.chop
-	#Loop length of isbn_num -1 (because of .chop)
+	#Loop length of 9, isbn_num length is 10, we .chop it to 9.
 	#Iterates through each index position of the string and multiplies by its position.
 	#Index position for ISBN numbers start at 1, not 0.
 	#Adds each iteration to total
@@ -80,6 +82,42 @@ def isbn_ten_valid?(isbn_num)
 	elsif check_digit != 10 && isbn_num[-1].to_i == check_digit
 				valid = true
 	end
+	#Calls valid, which is false if none of the conditions were met.
+	#True if the calculations check out and ISBN is valid.
 	valid
 
+end
+
+def isbn_thirteen_valid?(isbn_num)
+	#Same variables, principal as isbn10 calculation, except even_odd
+	#Use even_odd starting at 2, because I want to start on an even number
+	valid = false
+	total = 0
+	index_pos = 0
+	index_count = 1
+	even_odd = 2
+	counter = isbn_num.chop
+
+	#even_odd is used here to alternate between multiplying by 1 and 3
+	#If even_odd mod 2 equals 0 we have an even number, so multiply by 1
+	#Otherwise multiply by 3
+	#Add to total each iteration
+	counter.length.times do
+		if even_odd % 2 == 0
+			total = total + isbn_num[index_pos].to_i * 1
+		else
+			total = total + isbn_num[index_pos].to_i * 3
+		end
+			even_odd += 1
+			index_pos += 1
+	end
+	#Calculates check digit
+	check_digit = (10 - (total % 10)) % 10
+	#Compares check digit to last character of isbn_num
+	if check_digit == isbn_num[-1].to_i
+		valid = true
+	else
+		valid = false
+	end
+	valid
 end
