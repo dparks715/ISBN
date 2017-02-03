@@ -70,3 +70,12 @@ class TestcheckLastindex < Minitest::Test
 	end
 
 end
+
+class TestISBNtenCalc < Minitest::Test
+
+	def test_valid_isbn_ten_true
+		results = isbn_ten_valid?("877195869x")
+		assert_equal(true, results)	
+	end
+
+end
