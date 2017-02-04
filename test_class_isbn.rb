@@ -127,8 +127,24 @@ end
 
 class TestISBNten < Minitest::Test
 
-		def test_valid_isbn_ten_true
-			results = check_valid_isbn_ten?("877195869x")
-			assert_equal(true, results)
-		end
+	def test_valid_isbn_ten_true
+		results = check_valid_isbn_ten?("877195869x")
+		assert_equal(true, results)
+	end
+
+	def test_valid_isbn_ten_true_no_X
+		results = isbn_ten_check_digit?("0471958697")
+		assert_equal(true, results)	
+	end
+
+	def test_invalid_isbn_ten_false
+		results = isbn_ten_check_digit?("123195869X")
+		assert_equal(false, results)	
+	end
+
+	def test_invalid_isbn_ten_false_no_X
+		results = isbn_ten_check_digit?("1256786912")
+		assert_equal(false, results)	
+	end
+
 end
