@@ -103,7 +103,7 @@ def isbn_thirteen_check_digit?(isbn_num)
 	valid
 end
 
-def check_valid_isbn_ten?(isbn_num)
+def combined_isbn_ten?(isbn_num)
 	valid = false
 	if letter_check_ten(isbn_num)
 		if check_last_index(isbn_num)
@@ -115,7 +115,7 @@ def check_valid_isbn_ten?(isbn_num)
 	valid
 end
 
-def check_valid_isbn_13?(isbn_num)
+def combined_isbn_13?(isbn_num)
 	valid = false
 	if letter_check_13(isbn_num)
 		if isbn_thirteen_check_digit?(isbn_num)
@@ -133,11 +133,11 @@ def check_valid_isbn?(isbn_num)
 	valid = false
 	isbn_new = remove_spaces_hypens(isbn_num)
 	if isbn_new.length == 10
-		if check_valid_isbn_ten?(isbn_new)
+		if combined_isbn_ten?(isbn_new)
 			valid = true
 		end
 	else isbn_new.length == 13
-		if check_valid_isbn_13?(isbn_new)
+		if combined_isbn_13?(isbn_new)
 			valid = true
 		end
 	end

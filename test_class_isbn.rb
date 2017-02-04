@@ -128,22 +128,22 @@ end
 class TestISBNtenCombined < Minitest::Test
 
 	def test_valid_isbn_ten_true
-		results = check_valid_isbn_ten?("877195869x")
+		results = combined_isbn_ten?("877195869x")
 		assert_equal(true, results)
 	end
 
 	def test_valid_isbn_ten_true_no_X
-		results = check_valid_isbn_ten?("0471958697")
+		results = combined_isbn_ten?("0471958697")
 		assert_equal(true, results)	
 	end
 
 	def test_invalid_isbn_ten_false
-		results = check_valid_isbn_ten?("123195869X")
+		results = combined_isbn_ten?("123195869X")
 		assert_equal(false, results)	
 	end
 
 	def test_invalid_isbn_ten_false_no_X
-		results = check_valid_isbn_ten?("1256786912")
+		results = combined_isbn_ten?("1256786912")
 		assert_equal(false, results)	
 	end
 
@@ -152,22 +152,47 @@ end
 class TestISBNthirteenCombined < Minitest::Test
 
 	def test_valid_isbn_13_true
-		results = check_valid_isbn_13?("9780470059029")
+		results = combined_isbn_13?("9780470059029")
 		assert_equal(true, results)
 	end
 
 	def test_valid_isbn_13_true
-		results = check_valid_isbn_13?("4780470059029")
+		results = combined_isbn_13?("4780470059029")
 		assert_equal(false, results)
 	end
 
 end
 
 class TestValidISBNFinal < Minitest::Test
-
+	#ISBN 10 Tests
 	def test_final_valid_isbn_ten_true
 		results = check_valid_isbn?("0471958697")
 		assert_equal(true, results)		
+	end
+
+	def test_final_valid_isbn_spaces_hypens_true
+		results = check_valid_isbn?("04  7--1-95 8 697")
+		assert_equal(true, results)		
+	end
+
+	def test_final_valid_isbn_spaces_hypens_true_X
+		results = check_valid_isbn?("8 7 7--19-5869x")
+		assert_equal(true, results)		
+	end
+
+	def test_invalid_isbn_ten_false_no_X
+		results = check_valid_isbn?("1256786912")
+		assert_equal(false, results)	
+	end
+	#ISBN 13 tests
+	def test_valid_isbn_13_true
+		results = check_valid_isbn?("97 8047-005-902 9")
+		assert_equal(true, results)
+	end
+
+	def test_valid_isbn_13_true
+		results = check_valid_isbn?("4780470059029")
+		assert_equal(false, results)
 	end
 
 end
