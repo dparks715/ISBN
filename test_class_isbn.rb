@@ -3,19 +3,19 @@ require_relative 'class_isbn.rb'
 
 class TestISBNLength < Minitest::Test
 
-	def test_ten_length_true
+	def test_ten_length_is_10
 		results = isbn_length?('1234567890')
-		assert_equal(true, results)	
+		assert_equal(10, results)	
 	end
 
-	def test_nine_length_false
+	def test_nine_length_9
 		results = isbn_length?('123456789')
-		assert_equal(false, results)	
+		assert_equal(9, results)	
 	end
 
-	def test_ten_length_alphabet_true
+	def test_ten_length_alphabet_ten
 		results = isbn_length?('abcdefghij')
-		assert_equal(true, results)	
+		assert_equal(10, results)	
 	end
 
 end
@@ -39,16 +39,26 @@ class TestRemoveSpacesHyphens < Minitest::Test
 
 end
 
-class TestforlettersAndLength < Minitest::Test
+class TestforLetters < Minitest::Test
 
 	def test_for_letters_in_first_nine
-		results = letter_check('123mng456lkd3')
+		results = letter_check_13('123mng456l456')
 		assert_equal(false, results)
 	end
 
-	def test_no_letters_true
-		results = letter_check('123456789X')
+	def test_ten_length_with_X_true
+		results = letter_check_ten('123456789X')
 		assert_equal(true, results)
+	end
+
+	def test_ten_length_without_X_true
+		results = letter_check_ten('1234567890')
+		assert_equal(true, results)
+	end
+
+	def test_ten_length_with_letter_false
+		results = letter_check_ten('123456789b')
+		assert_equal(false, results)
 	end
 
 end
@@ -67,7 +77,7 @@ class TestcheckLastindex < Minitest::Test
 
 	def test_last_index_false_character
 		results = check_last_index('123457g')
-		assert_equal(true, results)
+		assert_equal(false, results)
 	end
 
 end

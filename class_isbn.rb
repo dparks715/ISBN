@@ -5,37 +5,29 @@ def remove_spaces_hypens(isbn_num)
 	isbn_num.delete(' ' '-')
 end
 
-#This next function will probably need to determine whether ISBN
-#is a 10 or 13 to decide which check digit calc to use.
-
-#Moved this from the top, because it checks for length of 10.
-#Length can start out greater than 10 due to spaces and hypens.
-#Ex. 1-2-3-4-5 6 7 8 9-X.  Much longer than 10 but all characters valid.
-#So we must call this AFTER hypens and spaces are removed.
+#Altered function from boolean to return length of isbn_num
+#So we know whether we are working with ISBN 10 or 13
+#Have to change tests to match now.
 def isbn_length?(isbn_num)
-#passing in a string, want boolean returned
-	if isbn_num.length == 10
-		true
-	else
-		false
-	end
+	isbn_length = isbn_num.length
+	isbn_length
 end
 
-#Modifying to check only first 9 characters using .chop because
-#the last character CAN be a letter.
-#THIS NEEDS TO RUN AFTER SPACES AND HYPENS ARE REMOVED TO WORK
-#BECAUSE WE ONLY REMOVE NUMBERS HERE!
-#It will chop off the last character, then remove the numbers.
-#Spaces, hypens, and numbers are gone so there should be nothing left
-#if it is a valid ISBN
-def letter_check(isbn_num)
-	#Calling 2 methods, .chop and .delete on our parameter isbn_num
-	#.chop removes the last character from the string. .delete('0-9') targets
-	#numbers in the string 0 to 9 and deletes them.  We assign whats left to
-	#the variable num.  Then we check the length of num using == 0.
-	#We expect 0 because we have removed numbers, spaces, and hypens, so
-	#if anything is left, it is an invalid character.
+#Made two functions to do letter check differently based on length
+#If it is length 10 it checks only the first 9 characters
+#using .chop because the last character CAN be a letter.
+def letter_check_ten(isbn_num)
+	valid = false
 		num = isbn_num.chop.delete('0-9')
+		#Calls check_last_index to verify the last index position
+		if num.length == 0 && check_last_index(isbn_num) == true
+			valid = true
+		end
+	valid
+end
+#If it is 13 it checks all characters because there can be no letters.
+def letter_check_13(isbn_num)
+		num = isbn_num.delete('0-9')
 		if num.length == 0
 			true
 		else
@@ -44,7 +36,7 @@ def letter_check(isbn_num)
 end
 
 def check_last_index(isbn_num)
-	if isbn_num.match(/[0-9xX]/) #remove spaces or it will look for spaces as well
+	if isbn_num[-1].match(/[0-9xX]/) #remove spaces or it will look for spaces as well
 		true
 	else
 		false
