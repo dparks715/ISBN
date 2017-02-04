@@ -3,15 +3,6 @@ def remove_spaces_hypens(isbn_num)
 	isbn_num.delete(' ' '-')
 end
 
-#Changed so 10 OR 13 is true
-def isbn_length?(isbn_num)
-	if isbn_num.length == 10 || isbn_num.length == 13
-		true
-	else
-		false
-	end
-end
-
 #Made two functions to do letter check differently based on length
 #If it is length 10 it checks only the first 9 characters
 #using .chop because the last character CAN be a letter.
@@ -112,6 +103,28 @@ def isbn_thirteen_check_digit?(isbn_num)
 	valid
 end
 
-def check_valid_isbn?(isbn_num)
+def check_valid_isbn_ten?(isbn_num)
+	valid = false
+	if letter_check_ten(isbn_num)
+		if check_last_index(isbn_num)
+			if isbn_ten_check_digit?(isbn_num)
+				valid = true
+			end
+		end
+	end
+	valid
+end
 
+def check_valid_isbn_13?(isbn_num)
+
+end
+#Moved from top
+#This will be the last function that calls the combined set of functions
+#for ISBN 10, or the set for ISBN 13
+def isbn_length?(isbn_num)
+	if isbn_num.length == 10 || isbn_num.length == 13
+		true
+	else
+		false
+	end
 end

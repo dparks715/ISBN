@@ -124,3 +124,11 @@ class TestISBN13Valid < Minitest::Test
 	end
 
 end
+
+class TestISBNten < Minitest::Test
+
+		def test_valid_isbn_ten_true
+			results = check_valid_isbn_ten?("877195869x")
+			assert_equal(true, results)
+		end
+end
