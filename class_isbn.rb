@@ -1,29 +1,27 @@
-#Need to chain functions together.
-
 #Deletes spaces and hypens from parameter.
 def remove_spaces_hypens(isbn_num)
 	isbn_num.delete(' ' '-')
 end
 
-#Altered function from boolean to return length of isbn_num
-#So we know whether we are working with ISBN 10 or 13
-#Have to change tests to match now.
+#Changed so 10 OR 13 is true
 def isbn_length?(isbn_num)
-	isbn_length = isbn_num.length
-	isbn_length
+	if isbn_num.length == 10 || isbn_num.length == 13
+		true
+	else
+		false
+	end
 end
 
 #Made two functions to do letter check differently based on length
 #If it is length 10 it checks only the first 9 characters
 #using .chop because the last character CAN be a letter.
 def letter_check_ten(isbn_num)
-	valid = false
 		num = isbn_num.chop.delete('0-9')
-		#Calls check_last_index to verify the last index position
-		if num.length == 0 && check_last_index(isbn_num) == true
-			valid = true
+		if num.length == 0
+			true
+		else
+			false
 		end
-	valid
 end
 #If it is 13 it checks all characters because there can be no letters.
 def letter_check_13(isbn_num)
@@ -45,7 +43,7 @@ def check_last_index(isbn_num)
 end
 
 #Does the check digit calculation for ISBN 10, returns true if valid, false if not.
-def isbn_ten_valid?(isbn_num)
+def isbn_ten_check_digit?(isbn_num)
 	#Assigning variables for counters, and valid starts as false.  Will get assigned
 	#true only if conditions/calculations are met.
 	valid = false
@@ -80,7 +78,7 @@ def isbn_ten_valid?(isbn_num)
 
 end
 
-def isbn_thirteen_valid?(isbn_num)
+def isbn_thirteen_check_digit?(isbn_num)
 	#Same variables, principal as isbn10 calculation, except even_odd
 	#Use even_odd starting at 2, because I want to start on an even number
 	valid = false
@@ -112,4 +110,8 @@ def isbn_thirteen_valid?(isbn_num)
 		valid = false
 	end
 	valid
+end
+
+def check_valid_isbn?(isbn_num)
+
 end

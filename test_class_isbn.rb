@@ -5,17 +5,22 @@ class TestISBNLength < Minitest::Test
 
 	def test_ten_length_is_10
 		results = isbn_length?('1234567890')
-		assert_equal(10, results)	
+		assert_equal(true, results)	
 	end
 
 	def test_nine_length_9
 		results = isbn_length?('123456789')
-		assert_equal(9, results)	
+		assert_equal(false, results)	
 	end
 
 	def test_ten_length_alphabet_ten
 		results = isbn_length?('abcdefghij')
-		assert_equal(10, results)	
+		assert_equal(true, results)	
+	end
+
+	def test_13_length_alphabet_13_true
+		results = isbn_length?('abcdefghijbvc')
+		assert_equal(true, results)	
 	end
 
 end
@@ -55,9 +60,14 @@ class TestforLetters < Minitest::Test
 		results = letter_check_ten('1234567890')
 		assert_equal(true, results)
 	end
-
+	#Still returns true because not checking for X yet.
 	def test_ten_length_with_letter_false
 		results = letter_check_ten('123456789b')
+		assert_equal(true, results)
+	end
+
+	def test_ten_symbol_false
+		results = letter_check_ten('12345%6789')
 		assert_equal(false, results)
 	end
 
@@ -84,23 +94,23 @@ end
 
 class TestISBNtenCalc < Minitest::Test
 
-	def test_valid_isbn_ten_true
-		results = isbn_ten_valid?("877195869x")
+	def test_valid_check_digit_ten_true
+		results = isbn_ten_check_digit?("877195869x")
 		assert_equal(true, results)	
 	end
 
-	def test_valid_isbn_ten_true_no_X
-		results = isbn_ten_valid?("0471958697")
+	def test_valid_check_digit_true_no_X
+		results = isbn_ten_check_digit?("0471958697")
 		assert_equal(true, results)	
 	end
 
-	def test_invalid_isbn_ten_false
-		results = isbn_ten_valid?("123195869X")
+	def test_invalid_check_digit_false
+		results = isbn_ten_check_digit?("123195869X")
 		assert_equal(false, results)	
 	end
 
-	def test_invalid_isbn_ten_false_no_X
-		results = isbn_ten_valid?("1256786912")
+	def test_invalid_check_digit_false_no_X
+		results = isbn_ten_check_digit?("1256786912")
 		assert_equal(false, results)	
 	end
 
@@ -108,8 +118,8 @@ end
 
 class TestISBN13Valid < Minitest::Test
 
-	def test_valid_isbn_13_true
-		results = isbn_thirteen_valid?("9780470059029")
+	def test_valid_check_digit_13_true
+		results = isbn_thirteen_check_digit?("9780470059029")
 		assert_equal(true, results)
 	end
 
