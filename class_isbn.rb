@@ -102,7 +102,11 @@ def isbn_thirteen_check_digit?(isbn_num)
 	end
 	valid
 end
-
+#Runs all functions in order related to ISBN10
+#If letter_check_ten is true, moves to next line
+#If check_last_index is true, moves to next line
+#If isbn_ten_check_digit is true, assigns true to valid
+#Calls valid, which gives us false unless all the conditions are met.
 def combined_isbn_ten?(isbn_num)
 	valid = false
 	if letter_check_ten(isbn_num)
@@ -114,7 +118,10 @@ def combined_isbn_ten?(isbn_num)
 	end
 	valid
 end
-
+#Runs all functions in order related to ISBN13
+#If letter_check_13 is true, moves to next line
+#If isbn_thirteen_check_digit is true, assigns true to valid
+#Calls valid, which gives us false unless all the conditions are met.
 def combined_isbn_13?(isbn_num)
 	valid = false
 	if letter_check_13(isbn_num)
@@ -125,10 +132,13 @@ def combined_isbn_13?(isbn_num)
 	valid
 end
 
-#Final function, determines the length of ISBN number and uses
-#one of the combined functions above based on length 10 or 13
-#Valid is set to false by default so all conditions must be true
-#or valid never changes from false.
+#Final function, calls our first function, remove_spaces_hypens
+#on our isbn_num.  This removes hypens and spaces, and assigns what
+#is left to isbn_new for later use.
+#Checks the length of isbn_new, which is just our isbn_num without
+#hypens or spaces.  If length is 10, calls our combined_isbn_ten? function.
+#If length is 13, calls our combined_isbn_13? function.
+#If length is anything else, valid remains false, the way we assigned it at the top.
 def check_valid_isbn?(isbn_num)
 	valid = false
 	isbn_new = remove_spaces_hypens(isbn_num)

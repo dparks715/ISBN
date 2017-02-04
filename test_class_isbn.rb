@@ -1,30 +1,33 @@
 require 'minitest/autorun'
 require_relative 'class_isbn.rb'
-=begin
-class TestISBNLength < Minitest::Test
 
-	def test_ten_length_is_10
-		results = isbn_length?('1234567890')
-		assert_equal(true, results)	
-	end
+#Removed the length tests because I repurposed that function
+#to call other functions based on length
 
-	def test_nine_length_9
-		results = isbn_length?('123456789')
-		assert_equal(false, results)	
-	end
+#class TestISBNLength < Minitest::Test
+#
+#	def test_ten_length_is_10
+#		results = isbn_length?('1234567890')
+#		assert_equal(true, results)	
+#	end
+#
+#	def test_nine_length_9
+#		results = isbn_length?('123456789')
+#		assert_equal(false, results)	
+#	end
+#
+#	def test_ten_length_alphabet_ten
+#		results = isbn_length?('abcdefghij')
+#		assert_equal(true, results)	
+#	end
+#
+#	def test_13_length_alphabet_13_true
+#		results = isbn_length?('abcdefghijbvc')
+#		assert_equal(true, results)	
+#	end
+#
+#end
 
-	def test_ten_length_alphabet_ten
-		results = isbn_length?('abcdefghij')
-		assert_equal(true, results)	
-	end
-
-	def test_13_length_alphabet_13_true
-		results = isbn_length?('abcdefghijbvc')
-		assert_equal(true, results)	
-	end
-
-end
-=end
 class TestRemoveSpacesHyphens < Minitest::Test
 
 	def test_remove_spaces
