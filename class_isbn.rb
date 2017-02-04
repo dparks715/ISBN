@@ -116,7 +116,13 @@ def check_valid_isbn_ten?(isbn_num)
 end
 
 def check_valid_isbn_13?(isbn_num)
-
+	valid = false
+	if letter_check_13(isbn_num)
+		if isbn_thirteen_check_digit?(isbn_num)
+			valid = true
+		end
+	end
+	valid
 end
 #Moved from top
 #This will be the last function that calls the combined set of functions

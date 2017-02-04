@@ -125,7 +125,7 @@ class TestISBN13Valid < Minitest::Test
 
 end
 
-class TestISBNten < Minitest::Test
+class TestISBNtenCombined < Minitest::Test
 
 	def test_valid_isbn_ten_true
 		results = check_valid_isbn_ten?("877195869x")
@@ -145,6 +145,15 @@ class TestISBNten < Minitest::Test
 	def test_invalid_isbn_ten_false_no_X
 		results = isbn_ten_check_digit?("1256786912")
 		assert_equal(false, results)	
+	end
+
+end
+
+class TestISBNthirteenCombined < Minitest::Test
+
+	def test_valid_isbn_13_true
+		results = isbn_thirteen_check_digit?("9780470059029")
+		assert_equal(true, results)
 	end
 
 end
