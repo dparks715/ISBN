@@ -20,20 +20,21 @@ class TestISBNLength < Minitest::Test
 
 end
 
-class TestRemoveSpaces < Minitest::Test
+class TestRemoveSpacesHyphens < Minitest::Test
 
 	def test_remove_spaces
-		results = remove_spaces('12  3 4 5')
+		results = remove_spaces_hypens('12  3 4 5')
 		assert_equal('12345', results)
 	end
 
-end
-
-class TestRemoveHypens < Minitest::Test
-
 	def test_remove_hypens
-		results = remove_hypen('1-2-3-4-5')
+		results = remove_spaces_hypens('1-2-3-4-5')
 		assert_equal('12345', results)
+	end
+
+	def test_remove_hypens_and_spaces
+		results = remove_spaces_hypens('1-2-3-4-5 6 7 8 9')
+		assert_equal('123456789', results)
 	end
 
 end
