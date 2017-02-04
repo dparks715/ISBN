@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require_relative 'class_isbn.rb'
-
+=begin
 class TestISBNLength < Minitest::Test
 
 	def test_ten_length_is_10
@@ -24,7 +24,7 @@ class TestISBNLength < Minitest::Test
 	end
 
 end
-
+=end
 class TestRemoveSpacesHyphens < Minitest::Test
 
 	def test_remove_spaces
@@ -133,17 +133,17 @@ class TestISBNtenCombined < Minitest::Test
 	end
 
 	def test_valid_isbn_ten_true_no_X
-		results = isbn_ten_check_digit?("0471958697")
+		results = check_valid_isbn_ten?("0471958697")
 		assert_equal(true, results)	
 	end
 
 	def test_invalid_isbn_ten_false
-		results = isbn_ten_check_digit?("123195869X")
+		results = check_valid_isbn_ten?("123195869X")
 		assert_equal(false, results)	
 	end
 
 	def test_invalid_isbn_ten_false_no_X
-		results = isbn_ten_check_digit?("1256786912")
+		results = check_valid_isbn_ten?("1256786912")
 		assert_equal(false, results)	
 	end
 
@@ -152,8 +152,22 @@ end
 class TestISBNthirteenCombined < Minitest::Test
 
 	def test_valid_isbn_13_true
-		results = isbn_thirteen_check_digit?("9780470059029")
+		results = check_valid_isbn_13?("9780470059029")
 		assert_equal(true, results)
+	end
+
+	def test_valid_isbn_13_true
+		results = check_valid_isbn_13?("4780470059029")
+		assert_equal(false, results)
+	end
+
+end
+
+class TestValidISBNFinal < Minitest::Test
+
+	def test_final_valid_isbn_ten_true
+		results = check_valid_isbn?("0471958697")
+		assert_equal(true, results)		
 	end
 
 end

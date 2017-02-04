@@ -124,13 +124,22 @@ def check_valid_isbn_13?(isbn_num)
 	end
 	valid
 end
-#Moved from top
-#This will be the last function that calls the combined set of functions
-#for ISBN 10, or the set for ISBN 13
-def isbn_length?(isbn_num)
-	if isbn_num.length == 10 || isbn_num.length == 13
-		true
-	else
-		false
+
+#Final function, determines the length of ISBN number and uses
+#one of the combined functions above based on length 10 or 13
+#Valid is set to false by default so all conditions must be true
+#or valid never changes from false.
+def check_valid_isbn?(isbn_num)
+	valid = false
+	isbn_new = remove_spaces_hypens(isbn_num)
+	if isbn_new.length == 10
+		if check_valid_isbn_ten?(isbn_new)
+			valid = true
+		end
+	else isbn_new.length == 13
+		if check_valid_isbn_13?(isbn_new)
+			valid = true
+		end
 	end
+	valid
 end
