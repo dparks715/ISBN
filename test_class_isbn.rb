@@ -194,5 +194,15 @@ class TestValidISBNFinal < Minitest::Test
 		results = check_valid_isbn?("4780470059029")
 		assert_equal(false, results)
 	end
+	#Random tests with invalid characters
+	def test_invalid_false
+		results = check_valid_isbn?("97 8047-005g902 9")
+		assert_equal(false, results)
+	end
+
+	def test_invalid_false_symbol
+		results = check_valid_isbn?("97 8047-*05902 9")
+		assert_equal(false, results)
+	end
 
 end
