@@ -60,7 +60,8 @@ def isbn_ten_check_digit?(isbn_num)
 				valid = true
 	#If check_digit does not equal ten, but matches the last character of isbn_num
 	#It is a valid ISBN10.  Convert the last digit of isbn_num to an integer for proper comparison.
-	elsif check_digit != 10 && isbn_num[-1].to_i == check_digit
+	elsif
+		isbn_num[-1].to_i == check_digit
 				valid = true
 	end
 	#Calls valid, which is false if none of the conditions were met.
@@ -108,15 +109,15 @@ end
 #If isbn_ten_check_digit is true, assigns true to valid
 #Calls valid, which gives us false unless all the conditions are met.
 def combined_isbn_ten?(isbn_num)
-	valid = false
+	#valid = false
 	if letter_check_ten(isbn_num)
-		if check_last_index(isbn_num)
-			if isbn_ten_check_digit?(isbn_num)
-				valid = true
-			end
-		end
+		check_last_index(isbn_num)
+			isbn_ten_check_digit?(isbn_num)
+				#valid = true
+			
+		
 	end
-	valid
+	#valid
 end
 #Runs all functions in order related to ISBN13
 #If letter_check_13 is true, moves to next line
@@ -140,16 +141,18 @@ end
 #If length is 13, calls our combined_isbn_13? function.
 #If length is anything else, valid remains false, the way we assigned it at the top.
 def check_valid_isbn?(isbn_num)
-	valid = false
+
 	isbn_new = remove_spaces_hypens(isbn_num)
+
 	if isbn_new.length == 10
-		if combined_isbn_ten?(isbn_new)
-			valid = true
-		end
-	else isbn_new.length == 13
-		if combined_isbn_13?(isbn_new)
-			valid = true
-		end
+		combined_isbn_ten?(isbn_new)
+			
+	elsif isbn_new.length == 13
+		combined_isbn_13?(isbn_new)
+
+	else
+		false
+				
 	end
-	valid
+
 end

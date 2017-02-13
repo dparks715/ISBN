@@ -54,6 +54,11 @@ class TestforLetters < Minitest::Test
 		assert_equal(false, results)
 	end
 
+	def test_letters_13_zero
+		results = letter_check_13("978w470059029")
+		assert_equal(false, results)
+	end
+
 	def test_ten_length_with_X_true
 		results = letter_check_ten('123456789X')
 		assert_equal(true, results)
@@ -159,6 +164,11 @@ class TestISBNthirteenCombined < Minitest::Test
 		assert_equal(true, results)
 	end
 
+	def test_isbn_13_with_letter
+		results = combined_isbn_13?("978w470059029")
+		assert_equal(false, results)
+	end
+
 	def test_valid_isbn_13_true
 		results = combined_isbn_13?("4780470059029")
 		assert_equal(false, results)
@@ -189,11 +199,11 @@ class TestValidISBNFinal < Minitest::Test
 	end
 	#ISBN 13 tests
 	def test_valid_isbn_13_true
-		results = check_valid_isbn?("97 8047-005-902 9")
-		assert_equal(true, results)
+		results = check_valid_isbn?("97 8w47-005-902 9")
+		assert_equal(false, results)
 	end
 
-	def test_valid_isbn_13_true
+	def test_valid_isbn_13_true_v2
 		results = check_valid_isbn?("4780470059029")
 		assert_equal(false, results)
 	end
@@ -206,6 +216,31 @@ class TestValidISBNFinal < Minitest::Test
 	def test_invalid_false_symbol
 		results = check_valid_isbn?("97 8047-*05902 9")
 		assert_equal(false, results)
+	end
+
+	def test_check_valid
+		results = check_valid_isbn?('0132971291')
+		assert_equal(true, results)
+	end
+
+	def test_check_valid_v2
+		results = check_valid_isbn?('0294566082')
+		assert_equal(true, results)
+	end
+
+	def test_check_valid_empty_string_false
+		results = check_valid_isbn?('')
+		assert_equal(false, results)
+	end
+
+	def test_check_invalid_hyphen_false
+		results = check_valid_isbn?('-')
+		assert_equal(false, results)
+	end
+
+	def test_check_7777777777
+		results = check_valid_isbn?('7777777777')
+		assert_equal(true, results)
 	end
 
 end
